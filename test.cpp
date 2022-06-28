@@ -10,6 +10,16 @@ TEST(ParserTest, KyotoAssertions) {
     EXPECT_EQ("市", address_parsed.municipality_suffix);
 }
 
+TEST(ParserTest, KyotoAssertionsWard) {
+    std::string s("京都府京都市右京区");
+    Address address_parsed = address_parse(s);
+    EXPECT_EQ("京都", address_parsed.prefecture);
+    EXPECT_EQ("府", address_parsed.prefecture_suffix);
+    EXPECT_EQ("京都", address_parsed.municipality);
+    EXPECT_EQ("市", address_parsed.municipality_suffix);
+    EXPECT_EQ("右京", address_parsed.ward);
+}
+
 TEST(ParserTest, BasicAssertions) {
     std::string s("群馬県高崎市");
     Address address_parsed = address_parse(s);

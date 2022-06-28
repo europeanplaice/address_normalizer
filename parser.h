@@ -76,17 +76,19 @@ struct address_grammar : qi::grammar<Iterator, Address()>
 
             |
              ( prefecture[at_c<0>(qi::_val) = qi::_1[0]][at_c<6>(qi::_val) = qi::_1[1]]
-              >> ward[at_c<3>(qi::_val) = qi::_1[1]][at_c<2>(qi::_val) = qi::_1[0]]
+              >> ward[at_c<2>(qi::_val) = qi::_1[0]][at_c<3>(qi::_val) = qi::_1[1]][at_c<7>(qi::_val) = "市"]
               >> -town[at_c<4>(qi::_val) = qi::_1]
              >> -district[at_c<5>(qi::_val) = qi::_1]
               )[at_c<1>(qi::_val) = ""]
-
+              
             |
             ( prefecture[at_c<0>(qi::_val) = qi::_1[0]][at_c<6>(qi::_val) = qi::_1[1]]
               >> municipality[at_c<2>(qi::_val) = qi::_1[0]][at_c<7>(qi::_val) = qi::_1[1]]
               >> -town[at_c<4>(qi::_val) = qi::_1]
              >> -district[at_c<5>(qi::_val) = qi::_1]
               )[at_c<1>(qi::_val) = ""]
+
+
             ;
     }
 
