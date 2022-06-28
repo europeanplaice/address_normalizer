@@ -1,19 +1,32 @@
 #include <gtest/gtest.h>
 #include "parser.h"
 
+TEST(ParserTest, KyotoAssertions) {
+    std::string s("京都府京都市");
+    Address address_parsed = address_parse(s);
+    EXPECT_EQ("京都", address_parsed.prefecture);
+    EXPECT_EQ("府", address_parsed.prefecture_suffix);
+    EXPECT_EQ("京都", address_parsed.municipality);
+    EXPECT_EQ("市", address_parsed.municipality_suffix);
+}
+
 TEST(ParserTest, BasicAssertions) {
     std::string s("群馬県高崎市");
     Address address_parsed = address_parse(s);
     EXPECT_EQ("群馬", address_parsed.prefecture);
+    EXPECT_EQ("県", address_parsed.prefecture_suffix);
     EXPECT_EQ("高崎", address_parsed.municipality);
+    EXPECT_EQ("市", address_parsed.municipality_suffix);
 }
 
 TEST(ParserTest, BasicAssertions2){
     std::string s("山梨県南巨摩郡身延町切石350");
     Address address_parsed = address_parse(s);
     EXPECT_EQ("山梨", address_parsed.prefecture);
+    EXPECT_EQ("県", address_parsed.prefecture_suffix);
     EXPECT_EQ("南巨摩", address_parsed.county);
     EXPECT_EQ("身延", address_parsed.municipality);
+    EXPECT_EQ("町", address_parsed.municipality_suffix);
     EXPECT_EQ("切石", address_parsed.town);
     EXPECT_EQ("350", address_parsed.district);
 }
