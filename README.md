@@ -12,9 +12,11 @@ struct Address {
     std::string prefecture; //都道府県
     std::string county; //郡
     std::string municipality; //市区町村
-    std::string ward; //区
+    std::string ward; //区行政区
     std::string town; //町名
     std::string district; //番地
+    std::string prefecture_suffix; // 都道府県接尾辞
+    std::string municipality_suffix; // 市区町村接尾辞
 };
 ```
 

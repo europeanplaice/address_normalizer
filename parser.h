@@ -12,12 +12,11 @@ struct Address {
     std::string prefecture; //都道府県
     std::string county; //郡
     std::string municipality; //市区町村
-    std::string ward; //区
+    std::string ward; //区行政区
     std::string town; //町名
     std::string district; //番地
-    std::string prefecture_suffix; //都道府県
-    std::string municipality_suffix; //
-
+    std::string prefecture_suffix; // 都道府県接尾辞
+    std::string municipality_suffix; // 市区町村接尾辞
 };
 
 BOOST_FUSION_ADAPT_STRUCT(
@@ -80,7 +79,7 @@ struct address_grammar : qi::grammar<Iterator, Address()>
               >> -town[at_c<4>(qi::_val) = qi::_1]
              >> -district[at_c<5>(qi::_val) = qi::_1]
               )[at_c<1>(qi::_val) = ""]
-              
+
             |
             ( prefecture[at_c<0>(qi::_val) = qi::_1[0]][at_c<6>(qi::_val) = qi::_1[1]]
               >> municipality[at_c<2>(qi::_val) = qi::_1[0]][at_c<7>(qi::_val) = qi::_1[1]]
