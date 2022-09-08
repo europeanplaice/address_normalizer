@@ -27,6 +27,10 @@ struct Address {
 
 ## 例(単体テストより抜粋)
 ```cpp
+
+#include <gtest/gtest.h>
+#include "parser.h"
+
 TEST(ParserTest, BasicAssertions2){
     std::string s("山梨県南巨摩郡身延町切石350");
     Address address_parsed = address_parse(s);
